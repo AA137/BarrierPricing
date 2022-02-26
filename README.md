@@ -1,2 +1,2 @@
-# BarrierPricing
-Barrier Option Pricing
+# Barrier Pricing
+Barrier Option Pricing using Monte Carlo methods
