@@ -18,8 +18,9 @@ def pathSimulator(spot, dte, iv, rho, iters, dt = 0.05):
             prices.append(prices[-1] * (1 + ((rho * dt) + (iv * np.sqrt(dt) * np.random.normal(0,1)))))
         paths.append(prices)
     return paths
-times = [0.05 * i for i in range(2001)]
-pths = pathSimulator(100, 100,0.25, 0.04, 100)
-for pth in pths:
-    plt.plot(times, pth, markersize = 1)
-plt.show()
+if __name__ == "__main__":
+    times = [0.05 * i for i in range(2001)]
+    pths = pathSimulator(100, 100,0.25, 0.04, 250)
+    for pth in pths:
+        plt.plot(times, pth, markersize = 1)
+    plt.show()
