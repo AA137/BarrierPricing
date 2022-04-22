@@ -78,6 +78,15 @@ def longstaff_schwartz_american_option_quadratic(X,r, strike):
     for cashflow, *_ in ls_american_option_quadratic_iter(X, r, strike):
         pass
     return cashflow.mean(axis=0) * np.exp(-r)
-def simulate_american(num, spot, strike, dte, iv, barrier, rho, dt=0.05, long = True, knock_in = True):
-    pass
-    
+def simulate_american(num,spot, strike, dte, iv, barrier, rho, dt=0.05, long = True, knock_in = True):
+    sims = pathSim.pathSimulator(spot, dte, iv, rho, num, dt=dt)
+    count = 0.0
+    for prices in sims:
+        count+=american_style(prices, strike, barrier, rho, long = long, knock_in = knock_in)
+    return(count/num)
+def simulate_european(num,spot, strike, dte, iv, barrier, rho, dt=0.05, long = True, knock_in = True):
+    sims = pathSim.pathSimulator(spot, dte, iv, rho, num, dt=dt)
+    count = 0.0
+    for prices in sims:
+        count+=european_style(prices, strike, barrier, long = long, knock_in = knock_in)
+    return(count/num)     
